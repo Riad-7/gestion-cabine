@@ -1,0 +1,558 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet Médical</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+            gap: 1.5rem;
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+        }
+        
+        .info-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .hours-table th, .hours-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .hours-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .emergency {
+            background-color: var(--danger-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .emergency h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cabinet Médical Dr. Lwa3er</h1>
+        <p>Médecine Générale</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#info">Informations</a></li>
+            <li><a href="#hours">Horaires</a></li>
+            <li><a href="#booking">Réservation</a></li>
+            <li><a href="#services">Services et Tarifs</a></li>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#payment">Paiement</a></li>
+            <li><a href="#policy">Politique</a></li>
+            <li><a href="#emergency">Urgences</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="info" class="section">
+            <h2>1. Informations Générales</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>📌 Nom du cabinet / médecin</strong>
+                    <p>Dr. Lwa3er Bzav</p>
+                </div>
+                <div class="info-item">
+                    <strong>🔍 Spécialité</strong>
+                    <p>Médecine Générale</p>
+                </div>
+                <div class="info-item">
+                    <strong>📍 Adresse</strong>
+                    <p>123 Avenue de la Santé, 75001 Paris</p>
+                </div>
+                <div class="info-item">
+                    <strong>📞 Téléphone</strong>
+                    <p>01 23 45 67 89</p>
+                </div>
+                <div class="info-item">
+                    <strong>📧 Email</strong>
+                    <p>contact@cabinetdrlwa3er.fr</p>
+                </div>
+                <div class="info-item">
+                    <strong>🌐 Site web</strong>
+                    <p>www.cabinetdrlwa3er.fr</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hours" class="section">
+            <h2>2. Horaires de Consultation</h2>
+            <table class="hours-table">
+                <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lundi</td>
+                        <td>9h00 - 18h00</td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>9h00 - 18h00</td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>9h00 - 12h00</td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi</td>
+                        <td>9h00 - 18h00</td>
+                    </tr>
+                    <tr>
+                        <td>Vendredi</td>
+                        <td>9h00 - 18h00</td>
+                    </tr>
+                    <tr>
+                        <td>Samedi</td>
+                        <td>9h00 - 12h00</td>
+                    </tr>
+                    <tr>
+                        <td>Dimanche</td>
+                        <td>Fermé</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="grid" style="margin-top: 2rem;">
+                <div class="info-item">
+                    <strong>🚑 Disponibilité pour les urgences</strong>
+                    <p>Oui, pendant les heures d'ouverture</p>
+                </div>
+                <div class="info-item">
+                    <strong>🏠 Consultation à domicile</strong>
+                    <p>Oui, sur demande spécifique</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="booking" class="section">
+            <h2>3. Modes de Réservation</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>📞 Par téléphone</strong>
+                    <p>01 23 45 67 89</p>
+                    <a href="tel:+33123456789" class="btn">Appeler maintenant</a>
+                </div>
+                <div class="info-item">
+                    <strong>💻 En ligne</strong>
+                    <p>Réservez facilement en quelques clics</p>
+                    <a href="reserver.php" class="btn btn-secondary" id="bookingBtn">Réserver en ligne</a>
+                </div>
+                <div class="info-item">
+                    <strong>🏥 Sur place</strong>
+                    <p>123 Avenue de la Santé, 75001 Paris</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn">Voir sur la carte</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="services" class="section">
+            <h2>4. Types de Consultation et Tarification</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>💰 Consultation standard</strong>
+                    <p>25€</p>
+                </div>
+                <div class="info-item">
+                    <strong>🩺 Consultation spécialisée</strong>
+                    <p>40€</p>
+                </div>
+                <div class="info-item">
+                    <strong>🏡 Consultation à domicile</strong>
+                    <p>50€</p>
+                </div>
+                <div class="info-item">
+                    <strong>📹 Téléconsultation</strong>
+                    <p>25€</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="documents" class="section">
+            <h2>5. Documents Nécessaires pour la Consultation</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>🆔 Carte d'identité</strong>
+                </div>
+                <div class="info-item">
+                    <strong>💳 Carte Vitale</strong>
+                </div>
+                <div class="info-item">
+                    <strong>📝 Mutuelle / Assurance santé</strong>
+                </div>
+                <div class="info-item">
+                    <strong>📜 Ordonnance précédente</strong>
+                    <p>(si nécessaire)</p>
+                </div>
+                <div class="info-item">
+                    <strong>💊 Liste des médicaments actuels</strong>
+                </div>
+            </div>
+        </section>
+        
+        <section id="payment" class="section">
+            <h2>6. Modalités de Paiement</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>💶 Espèces</strong>
+                    <p>Accepté</p>
+                </div>
+                <div class="info-item">
+                    <strong>💳 Carte bancaire</strong>
+                    <p>Accepté</p>
+                </div>
+                <div class="info-item">
+                    <strong>🏦 Virement</strong>
+                    <p>Accepté</p>
+                </div>
+                <div class="info-item">
+                    <strong>🖊 Chèque</strong>
+                    <p>Accepté</p>
+                </div>
+                <div class="info-item">
+                    <strong>💻 Paiement en ligne</strong>
+                    <p>Disponible pour les téléconsultations</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="policy" class="section">
+            <h2>7. Politique d'Annulation et de Modification</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>⏳ Délai minimum pour annuler</strong>
+                    <p>24 heures avant le rendez-vous</p>
+                </div>
+                <div class="info-item">
+                    <strong>❗ Frais d'annulation</strong>
+                    <p>Aucun si annulé dans les délais</p>
+                </div>
+                <div class="info-item">
+                    <strong>🔄 Processus pour modifier un rendez-vous</strong>
+                    <p>Par téléphone ou en ligne</p>
+                    <a href="#booking" class="btn">Modifier un rendez-vous</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="emergency" class="section">
+            <h2>8. Contact en Cas d'Urgence</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <strong>📞 Numéro du cabinet</strong>
+                    <p>01 23 45 67 89</p>
+                    <a href="tel:+33123456789" class="btn">Appeler le cabinet</a>
+                </div>
+            </div>
+            
+            <div class="emergency">
+                <h3>⚠️ Numéros d'urgence</h3>
+                <div class="grid">  
+                    <div class="info-item">
+                        <strong>Police</strong>
+                        <p>19</p>
+                        <a href="tel:19" class="btn btn-sucses">Appeler le 19</a>
+                    </div>
+                    <div class="info-item">
+                        <strong>Urgences maroccain</strong>
+                        <p>15</p>
+                        <a href="tel:15" class="btn btn-sucses">Appeler le 15</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>©  2025 Cabinet Médical Dr. Lwa3er - Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // // Simple modal booking system
+        // const bookingBtn = document.getElementById('bookingBtn');
+        // bookingBtn.addEventListener('click', function(e) {
+        //     e.preventDefault();
+            
+        //     // Create modal elements
+        //     const modal = document.createElement('div');
+        //     modal.style.position = 'fixed';
+        //     modal.style.top = '0';
+        //     modal.style.left = '0';
+        //     modal.style.width = '100%';
+        //     modal.style.height = '100%';
+        //     modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        //     modal.style.display = 'flex';
+        //     modal.style.justifyContent = 'center';
+        //     modal.style.alignItems = 'center';
+        //     modal.style.zIndex = '1000';
+            
+        //     const modalContent = document.createElement('div');
+        //     modalContent.style.backgroundColor = 'white';
+        //     modalContent.style.padding = '2rem';
+        //     modalContent.style.borderRadius = '8px';
+        //     modalContent.style.maxWidth = '500px';
+        //     modalContent.style.width = '90%';
+            
+        //     modalContent.innerHTML = `
+        //         <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Réserver un rendez-vous</h3>
+        //         <form id="bookingForm">
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="name" style="display: block; margin-bottom: 0.5rem;">Nom complet</label>
+        //                 <input type="text" id="name" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="name">
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="email" style="display: block; margin-bottom: 0.5rem;">Email</label>
+        //                 <input type="email" id="email" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="email">
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="phone" style="display: block; margin-bottom: 0.5rem;">Téléphone</label>
+        //                 <input type="tel" id="phone" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="tele">
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="date" style="display: block; margin-bottom: 0.5rem;">Date souhaitée</label>
+        //                 <input type="date" id="date" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="date">
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="time" style="display: block; margin-bottom: 0.5rem;">Heure souhaitée</label>
+        //                 <select id="time" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="time">
+        //                     <option value="">Sélectionnez une heure</option>
+        //                     <option value="09:00">09:00</option>
+        //                     <option value="10:00">10:00</option>
+        //                     <option value="11:00">11:00</option>
+        //                     <option value="14:00">14:00</option>
+        //                     <option value="15:00">15:00</option>
+        //                     <option value="16:00">16:00</option>
+        //                     <option value="17:00">17:00</option>
+        //                 </select>
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="type" style="display: block; margin-bottom: 0.5rem;">Type de consultation</label>
+        //                 <select id="type" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" name="consultation">
+        //                     <option value="">Sélectionnez un type</option>
+        //                     <option value="standard">Consultation standard (25€)</option>
+        //                     <option value="specialized">Consultation spécialisée (40€)</option>
+        //                     <option value="home">Consultation à domicile (50€)</option>
+        //                     <option value="video">Téléconsultation (25€)</option>
+        //                 </select>
+        //             </div>
+        //             <div style="margin-bottom: 1rem;">
+        //                 <label for="notes" style="display: block; margin-bottom: 0.5rem;">Notes (optionnel)</label>
+        //                 <textarea id="notes" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; height: 100px;" name="text"></textarea>
+        //             </div>
+        //             <div style="display: flex; justify-content: space-between; margin-top: 1.5rem;">
+        //                 <button type="button" id="closeModal" style="padding: 0.75rem 1.5rem; border-radius: 4px; border: none; background-color: #95a5a6; color: white; cursor: pointer;">Annuler</button>
+        //                 <button type="submit" style="padding: 0.75rem 1.5rem; border-radius: 4px; border: none; background-color: var(--primary-color); color: white; cursor: pointer;" name="btn">Réserver</button>
+        //             </div>
+        //         </form>
+        //     `;
+            
+        //     modal.appendChild(modalContent);
+        //     document.body.appendChild(modal);
+            
+        //     // Close modal when clicking the close button
+        //     document.getElementById('closeModal').addEventListener('click', function() {
+        //         document.body.removeChild(modal);
+        //     });
+            
+        //     // Handle booking form submission
+        //     document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        //         e.preventDefault();
+                
+        //         const name = document.getElementById('name').value;
+        //         const date = document.getElementById('date').value;
+        //         const time = document.getElementById('time').value;
+                
+        //         alert(`Merci ${name}! Votre rendez-vous du ${date} à ${time} a été enregistré. Vous recevrez une confirmation par email.`);
+                
+        //         document.body.removeChild(modal);
+        //     });
+            
+        //     // Close modal when clicking outside
+        //     modal.addEventListener('click', function(e) {
+        //         if (e.target === modal) {
+        //             document.body.removeChild(modal);
+        //         }
+        //     });
+        // });
+    </script>
+</body>
+</html>
