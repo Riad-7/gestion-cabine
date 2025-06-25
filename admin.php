@@ -1,73 +1,73 @@
 <?php
 session_start();
+require_once "db-connexion/db.php";
+
+// Valeurs par défaut si pas définies
+$_SESSION['color'] = $_SESSION['color'] ?? 'btn-success';
+$_SESSION['completer'] = $_SESSION['completer'] ?? 'Marquer comme fait';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashbord</title>
-  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
 </head>
 
-<body class="container">
-  <div style="text-align: center;">
+<body class="container my-4">
+  <div class="text-center">
     <?php
     $date = date("H");
-    if ($date > 16) {
+    $salutation = ($date > 16) ? "Bonsoir" : "Bonjour";
     ?>
-      <h2 style="display: inline;">Bonjour <h1 style="color: cornflowerblue; display: inline;"><?= $_SESSION['user']['username']; ?></h1>
-      </h2>
-    <?php
-    } else { ?>
-      <h2 style="display: inline;">Bonsoir <h1 style="color: cornflowerblue; display: inline;"><?= $_SESSION['user']['username']; ?></h1>
-      </h2>
-    <?php
-    }
-    ?>
-    <h2 style="color: cornflowerblue;" class="mt-4">Voici votre patients :</h2>
+    <h2><?= $salutation ?> <span style="color: cornflowerblue;"><?= htmlspecialchars($_SESSION['user']['username']) ?></span></h2>
+    <h4 class="mt-4 text-primary">Voici vos patients :</h4>
   </div>
 
-  <table class="table container mt-5">
-    <thead>
-      <tr>
-        <th scope="col">#ID</th>
-        <th scope="col">Nom complet</th>
-        <th scope="col">Nº CNI</th>
-        <th scope="col">Adresse e-mail</th>
-        <th scope="col">Téléphone</th>
-        <th scope="col">Date</th>
-        <th scope="col">Heure</th>
-        <th scope="col">Type de consultation</th>
-        <th scope="col">Message / Symptômes</th>
-      </tr>
-    </thead>
-    <?php
-    require_once "db-connexion/db.php";
-    $infos = $pdo->query("SELECT * FROM patiants")->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($infos as $info) {
-    ?>
+  <div class="table-responsive mt-5">
+    <table class="table table-hover table-bordered align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th>#ID</th>
+          <th>Nom complet</th>
+          <th>Nº CNI</th>
+          <th>Adresse e-mail</th>
+          <th>Téléphone</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Consultation</th>
+          <th>Message / Symptômes</th>
+          <th>Etat</th>
+        </tr>
+      </thead>
       <tbody>
-        <td scope="col"><?php echo $info['Id'] ?></td>
-        <td scope="col"><?php echo $info['name'] ?></td>
-        <td scope="col"><?php echo $info['cni'] ?></td>
-        <td scope="col"><?php echo $info['email'] ?></td>
-        <td scope="col"><?php echo $info['tele'] ?></td>
-        <td scope="col"><?php echo $info['date'] ?></td>
-        <td scope="col"><?php echo $info['time'] ?></td>
-        <td scope="col"><?php echo $info['consultation'] ?></td>
-        <td scope="col"><?php echo $info['text'] ?></td>
+        <?php
+        $infos = $pdo->query("SELECT * FROM patiants")->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($infos as $info):
+        ?>
+          <tr>
+            <td><?= $info['Id'] ?></td>
+            <td><?= htmlspecialchars($info['name']) ?></td>
+            <td><?= htmlspecialchars($info['cni']) ?></td>
+            <td><?= htmlspecialchars($info['email']) ?></td>
+            <td><?= htmlspecialchars($info['tele']) ?></td>
+            <td><?= $info['date'] ?></td>
+            <td><?= $info['time'] ?></td>
+            <td><?= htmlspecialchars($info['consultation']) ?></td>
+            <td><?= htmlspecialchars($info['text']) ?></td>
+            <td>
+              <a href="fait_non.php?id=<?= $info['Id']; ?>" class="btn <?= $info['etat'] ? 'btn-success' : 'btn-danger'; ?>">
+                <?= $info['etat'] ? 'Compléter' : 'Pas encore'; ?>
+              </a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
       </tbody>
-    <?php
-    }
-
-    ?>
-
-  </table>
-
-
+    </table>
+  </div>
 </body>
 
 </html>
